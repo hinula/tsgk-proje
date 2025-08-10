@@ -3,24 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <title>Açılış Sayfası</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    #output { white-space: pre-wrap; background: #f4f4f4; padding: 10px; border-radius: 5px; margin-top: 15px; }
+    button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+  </style>
 </head>
 <body>
   <h1>Hoş Geldiniz</h1>
-  <p>Verilerinizi alabiliriz.</p>
+  <p>Kısa açıklama burada olacak.</p>
   <button id="btn">Verileri Getir</button>
   <div id="output"></div>
+
   <script>
-document.getElementById('btn').addEventListener('click', async () => {
-  const res = await fetch('https://csv-api1.bf39140c296ecc5d52e86f37b4c5de1f.workers.dev?key=benim-gizli-anahtarim');
-  if (res.status === 401) {
-    document.getElementById('output').innerText = "Yetkisiz erişim! API anahtarı yanlış.";
-    return;
-  }
-  const data = await res.json();
-  document.getElementById('output').innerText = JSON.stringify(data, null, 2);
-});
-</script>
+    const API_URL = 'https://csv-api1.bf39140c296ecc5d52e86f37b4c5de1f.workers.dev';
+    const API_KEY = 'HiBeSe474747!'; // Buraya kendi API anahtarını yaz
 
-
+    document.getElementById('btn').addEventListener('click', async () => {
+      try {
+        const res = await fetch(`${API_URL}?key=${API_KEY}`);
+        if (res.status === 401) {
+          document.getElementById('output').innerText = "Yetkisiz erişim! API anahtarı yanlış.";
+          return;
+        }
+        const data = await res.json();
+        document.getElementById('output').innerText = JSON.stringify(data, null, 2);
+      } catch (err) {
+        document.getElementById('output').innerText = "Veri alınırken hata oluştu.";
+      }
+    });
+  </script>
 </body>
 </html>
