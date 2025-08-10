@@ -16,8 +16,11 @@
   <div id="output"></div>
 
   <script>
-    const API_URL = 'https://csv-api1.bf39140c296ecc5d52e86f37b4c5de1f.workers.dev';
-    const API_KEY = 'HiBeSe474747!'; // Buraya kendi API anahtarını yaz
+    const API_URL = 'https://script.google.com/macros/s/xxxxxxxxxxxxxxxxxxxx/exec';
+const API_KEY = ''; // API anahtarı yok, boş bırakabilirsin
+
+// Fetch kısmında ?key= kısmını kaldırabilirsin, çünkü anahtarsız.
+const res = await fetch(API_URL);
 
     document.getElementById('btn').addEventListener('click', async () => {
       try {
